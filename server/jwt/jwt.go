@@ -80,12 +80,12 @@ func Construct(user string) (string, error) {
 
 	headerJSON, err := json.Marshal(header)
 	if err != nil {
-        return "", fmt.Errorf("json marshal error with header: %v", err)
+		return "", fmt.Errorf("json marshal error with header: %v", err)
 	}
 
 	payloadJSON, err := json.Marshal(payload)
 	if err != nil {
-        return "", fmt.Errorf("json marshal error with payload: %v", err)
+		return "", fmt.Errorf("json marshal error with payload: %v", err)
 	}
 
 	encodedHeader := EncodeBase64URL(headerJSON)
@@ -106,20 +106,20 @@ func Construct(user string) (string, error) {
 // i just decode it and encode it again and then check the signature
 // hmm
 func Verify(token string) (bool, error) {
-    secret := os.Getenv("jwtsecret")
-    decoded, err := DecodeBase64(token)
-    if (err != nil) {
-        return false, fmt.Errorf("token decoding error: %v", err)
-    }
+	secret := os.Getenv("jwtsecret")
+	decoded, err := DecodeBase64(token)
+	if err != nil {
+		return false, fmt.Errorf("token decoding error: %v", err)
+	}
 
 	headerJSON, err := json.Marshal(decoded.header)
 	if err != nil {
-        return false, fmt.Errorf("json marshal error with header: %v", err)
+		return false, fmt.Errorf("json marshal error with header: %v", err)
 	}
 
 	payloadJSON, err := json.Marshal(decoded.payload)
 	if err != nil {
-        return false, fmt.Errorf("json marshal error with payload: %v", err)
+		return false, fmt.Errorf("json marshal error with payload: %v", err)
 	}
 
 	encodedHeader := EncodeBase64URL(headerJSON)
@@ -133,5 +133,5 @@ func Verify(token string) (bool, error) {
 
 	reconstructedToken := fmt.Sprintf("%s.%s", message, encodedSignature)
 
-    return token == reconstructedToken, nil
+	return token == reconstructedToken, nil
 }

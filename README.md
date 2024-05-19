@@ -10,4 +10,4 @@ university project for go class
 - authentication middleware
 - client side password hash
 
-- rething jwt.Verify()
+- rethink jwt.Verify()
