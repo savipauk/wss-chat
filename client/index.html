@@ -2,12 +2,38 @@
 
 <head>
 
-    <script src="main.js"></script>
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="default.css">
 
 </head>
 
-
 <body>
+
+    <div class="connectContainer" id="connectContainer">
+
+        <input id="chatter" type="text" value="Unnamed Chatter" />
+
+        <input onclick="ConnectToServer()" class="connectBtn" type="button" value="Connect" />
+
+    </div>
+
+
+    <div class="chatWrapper" id="chatWrapper">
+        <input class="leave" onclick="LeaveChat()" type="button" value="leave">
+
+        <div class="chat" id="chat">
+
+
+        </div>
+
+        <div class="sendMessageContainer">
+
+            <input id="chatMessage" class="messageBox" type="text" value="message" />
+
+            <input onclick="SendMessage()" class="connectBtn" type="button" value="Send" />
+
+        </div>
+    </div>
 
 </body>
 
